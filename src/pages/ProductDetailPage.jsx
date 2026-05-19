@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { useParams, Link } from 'react-router-dom';
-import { ChevronLeft, Minus, Plus, Check } from 'lucide-react';
+import { useParams, Link, useNavigate } from 'react-router-dom';
+import { ChevronLeft, Minus, Plus, Check, Zap } from 'lucide-react';
 import { getProductById, getFeaturedProducts } from '../data/products';
 import { useCart } from '../context/CartContext';
 import ProductCard from '../components/ProductCard';
@@ -8,6 +8,7 @@ import './ProductDetailPage.css';
 
 export default function ProductDetailPage() {
   const { id } = useParams();
+  const navigate = useNavigate();
   const product = getProductById(id);
   const { addToCart, setIsCartOpen } = useCart();
   
@@ -38,6 +39,11 @@ export default function ProductDetailPage() {
       setIsAdded(false);
       setIsCartOpen(true);
     }, 500);
+  };
+
+  const handleBuyNow = () => {
+    addToCart(product, quantity, selectedColor);
+    navigate('/checkout');
   };
 
   return (
@@ -117,21 +123,33 @@ export default function ProductDetailPage() {
               </div>
             </div>
 
-            <button 
-              className={`btn btn-primary add-to-cart ${isAdded ? 'added' : ''}`}
-              onClick={handleAddToCart}
-              disabled={!product.inStock}
-            >
-              {isAdded ? (
-                <>
-                  <Check size={18} /> Added to Cart
-                </>
-              ) : product.inStock ? (
-                'Add to Cart'
-              ) : (
-                'Out of Stock'
+            <div className="product-buttons">
+              <button 
+                className={`btn btn-primary add-to-cart ${isAdded ? 'added' : ''}`}
+                onClick={handleAddToCart}
+                disabled={!product.inStock}
+              >
+                {isAdded ? (
+                  <>
+                    <Check size={18} /> Added to Cart
+                  </>
+                ) : product.inStock ? (
+                  'Add to Cart'
+                ) : (
+                  'Out of Stock'
+                )}
+              </button>
+              
+              {product.inStock && (
+                <button 
+                  className="btn btn-secondary buy-now"
+                  onClick={handleBuyNow}
+                >
+                  <Zap size={18} />
+                  Buy Now
+                </button>
               )}
-            </button>
+            </div>
 
             <div className="product-meta">
               <div className="meta-item">

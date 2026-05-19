@@ -198,14 +198,35 @@
   font-size: 1rem;
 }
 
-.add-to-cart {
-  width: 100%;
+.product-buttons {
+  display: flex;
+  gap: 1rem;
   margin-top: 1rem;
   margin-bottom: 2rem;
 }
 
+.add-to-cart {
+  flex: 1;
+}
+
 .add-to-cart.added {
   background-color: #22c55e;
+}
+
+.buy-now {
+  flex: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background-color: var(--foreground);
+  color: var(--background);
+  border: none;
+}
+
+.buy-now:hover {
+  background-color: var(--primary);
+  color: var(--primary-foreground);
 }
 
 .product-meta {
