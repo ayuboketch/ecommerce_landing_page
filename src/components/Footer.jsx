@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Instagram, Twitter, Facebook } from 'lucide-react';
+import { Mail, Globe, Send } from 'lucide-react';
 import './Footer.css';
 
 export default function Footer() {
@@ -13,14 +13,14 @@ export default function Footer() {
               Curated essentials for mindful living. Quality craftsmanship meets timeless design.
             </p>
             <div className="footer-social">
-              <a href="#" aria-label="Instagram" className="social-link">
-                <Instagram size={20} />
+              <a href="#" aria-label="Email us" className="social-link">
+                <Mail size={20} />
               </a>
-              <a href="#" aria-label="Twitter" className="social-link">
-                <Twitter size={20} />
+              <a href="#" aria-label="Visit our website" className="social-link">
+                <Globe size={20} />
               </a>
-              <a href="#" aria-label="Facebook" className="social-link">
-                <Facebook size={20} />
+              <a href="#" aria-label="Contact us" className="social-link">
+                <Send size={20} />
               </a>
             </div>
           </div>
